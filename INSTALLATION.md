@@ -50,6 +50,12 @@ Optional for weather policy:
 - `WEATHER_LONGITUDE`
 - `WEATHER_RAIN_THRESHOLD_MM`
 
+How to find weather coordinates:
+
+- Prefer auto-discovery from Solis first (leave latitude/longitude empty).
+- Or set fixed values manually in `.env`.
+- See coordinate finding methods in [USAGE.md](USAGE.md#how-to-find-latitude-and-longitude-for-weather).
+
 Optional for external tool authentication:
 
 - `API_AUTH_ENABLED=true`

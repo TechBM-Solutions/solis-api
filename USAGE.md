@@ -128,6 +128,66 @@ Weather decision tuning:
 
 If coordinates are not configured, the service attempts to discover them from Solis station data.
 
+## How To Find Latitude And Longitude For Weather
+
+Use one of these methods.
+
+### Method 1: Automatic From Solis (recommended first)
+
+The app can auto-discover coordinates from your Solis station.
+
+1. Call:
+
+```bash
+curl -sS http://127.0.0.1:8001/discover
+```
+
+2. In the response, check station preview fields:
+
+- `station_preview[0].latitude`
+- `station_preview[0].longitude`
+
+3. You can keep `WEATHER_LATITUDE` and `WEATHER_LONGITUDE` empty if those values are present.
+
+4. Confirm weather source by calling:
+
+```bash
+curl -sS http://127.0.0.1:8001/consumption-decision
+```
+
+If `weather_gate.source` is `solis_station`, location was resolved automatically from Solis.
+
+### Method 2: Set Coordinates Explicitly In .env
+
+If Solis discovery is unavailable or you want a fixed location:
+
+1. Set in `.env`:
+
+- `WEATHER_LATITUDE=<your-latitude>`
+- `WEATHER_LONGITUDE=<your-longitude>`
+
+2. Restart the service.
+
+3. Call `/consumption-decision` and verify `weather_gate.source` is `env`.
+
+### Method 3: Get Coordinates From Open-Meteo Geocoding
+
+Search by city/place name:
+
+```bash
+curl -sS "https://geocoding-api.open-meteo.com/v1/search?name=Bucharest&count=1&language=en&format=json"
+```
+
+Use `results[0].latitude` and `results[0].longitude` in `.env`.
+
+### Quick Validation Checklist
+
+After choosing a method, check:
+
+1. `/consumption-decision` returns `weather_gate.available=true`
+2. `weather_gate.latitude` and `weather_gate.longitude` are populated
+3. `weather_gate.source` is the expected value (`env` or `solis_station`)
+
 ## Troubleshooting
 
 - TypeError: Failed to fetch in dashboard:
