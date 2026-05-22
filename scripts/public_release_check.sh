@@ -32,7 +32,6 @@ for file in \
   PUBLIC_RELEASE.md \
   .env.example \
   .github/dependabot.yml \
-  .github/workflows/ci.yml \
   .github/pull_request_template.md \
   .github/ISSUE_TEMPLATE/bug_report.md \
   .github/ISSUE_TEMPLATE/feature_request.md \

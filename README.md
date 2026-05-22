@@ -40,7 +40,8 @@ If this project helps you, please keep attribution visible so people know it was
 - Vulnerability reporting and security policy: [SECURITY.md](SECURITY.md)
 - Community behavior standards: [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
 - Dependency update automation: [.github/dependabot.yml](.github/dependabot.yml)
-- CI workflow: [.github/workflows/ci.yml](.github/workflows/ci.yml)
+
+Note: CI workflow file can be added after push from a token/account with `workflow` scope.
 
 ## Quick Start
 
